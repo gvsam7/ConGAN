@@ -22,7 +22,7 @@ from models.InitialiseWeights import initialise_weights
 from utils.GradientPenalty import gradient_penalty
 from utils.SaveLoadChkpnt import save_checkpoint, load_checkpoint
 import wandb
-wandb.tensorboard.patch(root_logdir='logs/GAN_MNIST/')
+wandb.tensorboard.patch(root_logdir='logs/')
 wandb.init(project="GAN", sync_tensorboard=True)
 
 
@@ -128,7 +128,7 @@ def main():
 
             # wandb
             train_steps = len(loader) * (epoch + 1)
-            wandb.log({"Loss D": loss_critic, "Loss G:": loss_gen})
+            wandb.log({"Loss D": loss_critic, "Loss G:": loss_gen}, step=train_steps)
 
             # Print losses occasionally and print to tensorboard
             if batch_idx % 100 == 0 and batch_idx > 0:
@@ -148,12 +148,12 @@ def main():
 
                 step += 1
 
-                wandb.log(
+                """wandb.log(
                     {
                         "Real": [wandb.Image(i) for i in img_grid_real],
                         "Fake": [wandb.Image(i) for i in img_grid_fake],
                            }
-                )
+                )"""
 
 
 if __name__ == "__main__":
