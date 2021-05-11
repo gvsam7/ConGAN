@@ -42,6 +42,8 @@ def arguments():
     parser.add_argument("--lambda_gp", type=int, default=10)
     parser.add_argument("--num-classes", type=int, default=10)
     parser.add_argument("--gen-embedding", type=int, default=100)
+    parser.add_argument("--dataset", default="fashion-mnist", help="mnist = MNIST, fashion-mnist = FashionMNIST,"
+                                                               "cifar = CIFAR10, stl = STL10, celeba = CelebA")
     return parser.parse_args()
 
 
@@ -64,7 +66,18 @@ def main():
         ]
     )
 
-    dataset = datasets.FashionMNIST(root="dataset/", transform=transforms, download=True)
+    #Dataset
+    if args.dataset == "mnist":
+        dataset = datasets.MNIST(root="dataset/", transform=transforms, download=True)
+    elif args.dataset == "fashion-mnist":
+        dataset = datasets.FashionMNIST(root="dataset/", transform=transforms, download=True)
+    elif args.dataset == "cifar":
+        dataset = datasets.CIFAR10(root="dataset/", transform=transforms, download=True)
+    elif args.dataset == "stl":
+        dataset = datasets.STL10(root="dataset/", transform=transforms, download=True)
+    elif args.dataset == "celeba":
+        dataset = datasets.CelebA(root="data/", transform=transforms, download=True)
+    print(f"Dataset: {args.dataset}")
     # comment mnist above and uncomment below for training on CelebA
     # dataset = datasets.ImageFolder(root="celeb_dataset", transform=transforms)
     loader = DataLoader(
