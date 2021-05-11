@@ -148,13 +148,6 @@ def main():
 
                 step += 1
 
-                """wandb.log(
-                    {
-                        "Real": [wandb.Image(i) for i in img_grid_real],
-                        "Fake": [wandb.Image(i) for i in img_grid_fake],
-                           }
-                )"""
-
 
 if __name__ == "__main__":
     main()
