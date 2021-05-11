@@ -66,7 +66,7 @@ def main():
         ]
     )
 
-    #Dataset
+    # Datasets
     if args.dataset == "mnist":
         dataset = datasets.MNIST(root="dataset/", transform=transforms, download=True)
     elif args.dataset == "fashion-mnist":
