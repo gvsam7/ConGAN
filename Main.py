@@ -33,7 +33,7 @@ def arguments():
     parser.add_argument("--epochs", type=int, default=2)
     parser.add_argument("--batch-size", type=int, default=64)
     parser.add_argument("--img-size", type=int, default=64)
-    parser.add_argument("--channels_img", type=int, default=1)
+    parser.add_argument("--channels_img", type=int, default=3)
     parser.add_argument("--lr", type=float, default=1e-4)
     parser.add_argument("--z-dim", type=int, default=100)
     parser.add_argument("--features-critic", type=int, default=16)
@@ -42,8 +42,8 @@ def arguments():
     parser.add_argument("--lambda_gp", type=int, default=10)
     parser.add_argument("--num-classes", type=int, default=10)
     parser.add_argument("--gen-embedding", type=int, default=100)
-    parser.add_argument("--dataset", default="fashion-mnist", help="mnist = MNIST, fashion-mnist = FashionMNIST,"
-                                                               "cifar = CIFAR10, stl = STL10, celeba = CelebA")
+    parser.add_argument("--dataset", default="ssrp", help="mnist = MNIST, fashion-mnist = FashionMNIST,"
+                                                               "cifar = CIFAR10, stl = STL10, celeba = CelebA, ssrp=SSRP")
     return parser.parse_args()
 
 
@@ -77,6 +77,9 @@ def main():
         dataset = datasets.STL10(root="dataset/", transform=transforms, download=True)
     elif args.dataset == "celeba":
         dataset = datasets.CelebA(root="data/", transform=transforms, download=True)
+    else:
+        dataset = datasets.ImageFolder(root="Training_Data_2018_2014", transform=transforms)
+
     print(f"Dataset: {args.dataset}")
     # comment mnist above and uncomment below for training on CelebA
     # dataset = datasets.ImageFolder(root="celeb_dataset", transform=transforms)
