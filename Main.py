@@ -79,7 +79,6 @@ def main():
         dataset = datasets.CelebA(root="data/", transform=transforms, download=True)
     else:
         dataset = datasets.ImageFolder(root="Training_Data_2018_2014", transform=transforms)
-
     print(f"Dataset: {args.dataset}")
 
     loader = DataLoader(
