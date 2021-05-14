@@ -33,13 +33,13 @@ def arguments():
     parser.add_argument("--epochs", type=int, default=2)
     parser.add_argument("--batch-size", type=int, default=64)
     parser.add_argument("--img-size", type=int, default=64)
-    parser.add_argument("--channels_img", type=int, default=3)
+    parser.add_argument("--channels-img", type=int, default=3)
     parser.add_argument("--lr", type=float, default=1e-4)
     parser.add_argument("--z-dim", type=int, default=100)
     parser.add_argument("--features-critic", type=int, default=16)
     parser.add_argument("--features-gen", type=int, default=16)
     parser.add_argument("--critic-iterations", type=int, default=5)
-    parser.add_argument("--lambda_gp", type=int, default=10)
+    parser.add_argument("--lambda-gp", type=int, default=10)
     parser.add_argument("--num-classes", type=int, default=10)
     parser.add_argument("--gen-embedding", type=int, default=100)
     parser.add_argument("--dataset", default="ssrp", help="mnist = MNIST, fashion-mnist = FashionMNIST,"
@@ -81,8 +81,7 @@ def main():
         dataset = datasets.ImageFolder(root="Training_Data_2018_2014", transform=transforms)
 
     print(f"Dataset: {args.dataset}")
-    # comment mnist above and uncomment below for training on CelebA
-    # dataset = datasets.ImageFolder(root="celeb_dataset", transform=transforms)
+
     loader = DataLoader(
         dataset,
         batch_size=args.batch_size,
